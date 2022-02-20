@@ -4,7 +4,7 @@ const gameStatus = document.querySelector('.status');
 const player1 = document.querySelector('.player1');
 const player2 = document.querySelector('.player2');
 let flag = true;
-let win = [
+let winCombinations = [
     [0,1,2],
     [3,4,5],
     [6,7,8],
@@ -14,6 +14,7 @@ let win = [
     [0,4,8],
     [2,4,6]
 ];
+let gameFinished = false;
 
 function togglePlayer(start) {
     player1.classList.toggle('active', typeof start == 'undefined' ? undefined : start);
@@ -28,14 +29,40 @@ button.addEventListener('click', () => {
         el.classList.remove('active-o'); 
     }
     togglePlayer(true);
+    gameFinished = false;
 })
 
 for(let i = 0; i < fieldItem.length; i++) {
     fieldItem[i].addEventListener('click', (el) => {
-        if (!el.target.classList.contains('done')) {
+        if (!el.target.classList.contains('done') && !gameFinished) {
             el.target.classList.add('done');
             el.target.classList.add(flag ? 'active-x' : 'active-o');
-            togglePlayer();
+            if (winGame('active-x')) {
+                document.querySelector('h3').innerHTML = 'Player 1 WINS!';
+                gameFinished = true;
+            } else if (winGame('active-o')) {
+                document.querySelector('h3').innerHTML = 'Player 2 WINS!';
+                gameFinished = true;
+            } else {
+                togglePlayer();
+            }
         }
     })
+}
+
+function winGame (className) {
+    let i = 0;
+    let win = false;
+        for( let condition of winCombinations) {
+        i = 0;
+        for( let el of condition) {
+            if(fieldItem[el].classList.contains(className)) {
+                i++; 
+            };
+            if(i === 3) {
+                win = true;
+            }
+        }
+    
+    } return win;
 }
