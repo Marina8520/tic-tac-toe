@@ -1,0 +1,106 @@
+html {
+    margin: 0 auto;
+}
+body {
+    background-color: #355f5f;
+}
+*{
+    box-sizing: border-box;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 25px;
+    color: rgb(255, 254, 254);
+}
+
+.active {
+color: rgb(177, 43, 10);
+}
+
+.none-field {
+    display: none;
+}
+
+.main-container{
+display: flex;
+min-height: 580px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.field {
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.field-item {
+display: flex;
+width: 125px;
+height: 125px;
+background-color: #223a3a;
+cursor: pointer;
+}
+
+.active-x {
+background-image: url(./assets/svg/cross.png);
+background-size: contain;
+}
+
+.active-o {
+    background-image: url(./assets/svg/circle.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    }
+
+.status {
+    color: rgb(255, 254, 254);
+}
+
+button {
+    background-color: #4c6b6b;
+    color: rgb(255, 254, 254);
+}
+
+.footer-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 23px; 
+
+}
+
+.footer-item {
+    padding-left: 10px;
+    color: rgb(255, 254, 254);
+}
+
+.github {
+    color: rgb(255, 254, 254);
+    transition: 0.3s;
+}
+
+.rss {
+    width: 135px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(./assets/svg/rss.svg);
+    padding-right: 30px;
+    transition: 0.3s; 
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
