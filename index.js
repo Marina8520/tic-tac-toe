@@ -40,8 +40,16 @@ for(let i = 0; i < fieldItem.length; i++) {
             if (winGame('active-x')) {
                 document.querySelector('h3').innerHTML = 'Player 1 WINS!';
                 gameFinished = true;
+                localStorage.setItem('Player 1');
+                for(let i = 0; i < storage.length; i++) {
+                    console.log ()
+                }
             } else if (winGame('active-o')) {
                 document.querySelector('h3').innerHTML = 'Player 2 WINS!';
+                gameFinished = true;
+                localStorage.setItem('Player 2');
+            } else if(isDraw()){
+                document.querySelector('h3').innerHTML = 'Game ended in a draw';
                 gameFinished = true;
             } else {
                 togglePlayer();
@@ -51,9 +59,9 @@ for(let i = 0; i < fieldItem.length; i++) {
 }
 
 function winGame (className) {
-    let i = 0;
+    let i = 0, n = 0;
     let win = false;
-        for( let condition of winCombinations) {
+    for( let condition of winCombinations) {
         i = 0;
         for( let el of condition) {
             if(fieldItem[el].classList.contains(className)) {
@@ -63,6 +71,19 @@ function winGame (className) {
                 win = true;
             }
         }
-    
+        
     } return win;
+}
+
+function isDraw() {
+    let n = 0;
+    let draw = false;
+    for( let el of fieldItem) {
+        if(el.classList.contains('done')) {
+            n++;
+        }
+        if(n === 9) {
+            draw = true; 
+        }
+    } return draw;
 }
