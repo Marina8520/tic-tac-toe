@@ -29,6 +29,7 @@ button.addEventListener('click', () => {
         el.classList.remove('active-o'); 
     }
     togglePlayer(true);
+    document.querySelector('h3').innerHTML = 'The active player highlighted in red'
     gameFinished = false;
 })
 
