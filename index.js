@@ -1,4 +1,5 @@
 const button = document.querySelector('.button');
+const lastWinners = document.querySelector('.last-winners');
 const fieldItem = document.querySelectorAll('.field-item');
 const gameStatus = document.querySelector('.status');
 const player1 = document.querySelector('.player1');
@@ -15,6 +16,8 @@ let winCombinations = [
     [2,4,6]
 ];
 let gameFinished = false;
+let winners = localStorage;
+console.log(winners);
 
 function togglePlayer(start) {
     player1.classList.toggle('active', typeof start == 'undefined' ? undefined : start);
@@ -26,11 +29,22 @@ button.addEventListener('click', () => {
     for ( let el of fieldItem) {
         el.classList.remove('active-x'); 
         el.classList.remove('done'); 
-        el.classList.remove('active-o'); 
+        el.classList.remove('active-o');
+        el.classList.add('field-item');
+        el.classList.remove('none-field'); 
     }
     togglePlayer(true);
     document.querySelector('h3').innerHTML = 'The active player highlighted in red'
     gameFinished = false;
+})
+
+lastWinners.addEventListener('click', () => {
+    for(let el of fieldItem) {
+        el.classList.remove('field-item');
+        el.classList.add('none-field');
+        document.querySelector('h3').innerHTML = Object.values(localStorage).join(' | ');
+    }
+
 })
 
 for(let i = 0; i < fieldItem.length; i++) {
@@ -41,14 +55,12 @@ for(let i = 0; i < fieldItem.length; i++) {
             if (winGame('active-x')) {
                 document.querySelector('h3').innerHTML = 'Player 1 WINS!';
                 gameFinished = true;
-                localStorage.setItem('Player 1');
-                for(let i = 0; i < storage.length; i++) {
-                    console.log ()
-                }
+                localStorage.setItem(localStorage.length + 1, 'Player 1');
+                
             } else if (winGame('active-o')) {
                 document.querySelector('h3').innerHTML = 'Player 2 WINS!';
                 gameFinished = true;
-                localStorage.setItem('Player 2');
+                localStorage.setItem(localStorage.length + 1, 'Player 2');
             } else if(isDraw()){
                 document.querySelector('h3').innerHTML = 'Game ended in a draw';
                 gameFinished = true;

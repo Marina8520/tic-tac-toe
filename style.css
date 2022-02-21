@@ -20,6 +20,10 @@ body {
 color: rgb(177, 43, 10);
 }
 
+.none-field {
+    display: none;
+}
+
 .main-container{
 display: flex;
 min-height: 580px;
